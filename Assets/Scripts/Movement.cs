@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float moveSpeed = 6f;
+    float multiplier;
     public float JumpForce = 6f;
     public float gravityScale = 6f;
 
@@ -60,6 +61,15 @@ public class Movement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal");
         verticalMove = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            multiplier = 2;
+        }
+        else
+        {
+            multiplier = 1;
+        }
+
         moveDirection = transform.forward * verticalMove + transform.right * horizontalMove;
     }
 
@@ -70,6 +80,6 @@ public class Movement : MonoBehaviour
 
     void MovePlayer()
     {
-        rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Acceleration);
+        rb.AddForce(moveDirection.normalized * (moveSpeed * multiplier), ForceMode.Acceleration);
     }
 }
