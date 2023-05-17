@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Jesse.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Day.unity
+    guid: 4d715269d19b7a9489a398aa74a4ad74
+  - enabled: 1
+    path: Assets/Scenes/Night.unity
+    guid: 23dab55291c6dc04cb981382d3323ff1
   m_configObjects: {}

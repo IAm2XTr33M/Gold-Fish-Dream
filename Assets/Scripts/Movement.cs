@@ -6,11 +6,13 @@ public class Movement : MonoBehaviour
 {
     public float moveSpeed = 6f;
     public float JumpForce = 6f;
+    public float gravityScale = 6f;
 
     float horizontalMove;
     float verticalMove;
 
     public bool isGrounded;
+    public bool canJump = true;
 
     Vector3 moveDirection;
 
@@ -27,15 +29,30 @@ public class Movement : MonoBehaviour
 
         MyInput();
 
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if(Input.GetKey(KeyCode.Space) && isGrounded && canJump)
         {
             Jump();
+        }
+        else
+        {
+            rb.AddForce(transform.up * -gravityScale, ForceMode.Acceleration);
         }
     }
 
     void Jump()
     {
+        canJump = false;
+        transform.position += new Vector3(0, 0.2f, 0);
+        rb.AddForce(transform.up * JumpForce/5, ForceMode.Impulse);
         rb.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+        StartCoroutine(delay());
+
+
+        IEnumerator delay()
+        {
+            yield return new WaitForSeconds(0.5f);
+            canJump = true;
+        }
     }
 
     void MyInput()

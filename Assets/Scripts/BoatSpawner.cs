@@ -9,7 +9,7 @@ public class BoatSpawner : MonoBehaviour
 
     public List<GameObject> boats = new List<GameObject>();
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < boatSpawns; i++)
         {
